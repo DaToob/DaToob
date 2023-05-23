@@ -1,5 +1,5 @@
 # DaToob
-This is a fork of the original rePok project, with a couple of fixes applied.
+This is a fork of the [original rePok project](https://github.com/chazizgrkb/repok), with a couple of fixes applied.
 
 ## Credits
 
