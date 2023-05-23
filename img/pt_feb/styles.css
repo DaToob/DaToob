@@ -1,0 +1,18 @@
+.header1 {
+	background-image: url(header.gif);
+	color: white;
+}
+
+.header2 {
+	background-image: url(subheader.gif);
+	color: white;
+}
+
+.header1 a:link, .header1 a:visited, .header1 a:active,
+.header2 a:link, .header2 a:visited, .header2 a:active {
+	color: white;
+}
+
+body {
+	margin: 0px;
+}
