@@ -187,7 +187,7 @@ namespace rePok {
         static function getFlashVideo($videoID): string
         {
             if ($videoID ?? null) {
-                $file = "dynamic/videos/" . $videoID . ".flv";
+                $file = "/dynamic/videos/" . $videoID . ".flv";
                 return $file;
             } else {
                 die("getFlashVideo Error: videoID is missing!");
