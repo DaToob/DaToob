@@ -48,7 +48,7 @@
         }
     </script>
     {% if isFlash == "true" %}
-        <script type="text/javascript" src="/img/flashobject.js"></script>
+        <script type="text/javascript" src="/img/swfobject.js"></script>
     {% endif %}
 {% endblock %}
 {% block content %}
@@ -98,12 +98,7 @@
                 </div>
                 {% if isFlash == "true" %}
                     <script type="text/javascript">
-                        // <![CDATA[
-
-                        var fo = new FlashObject("player.swf?video_id={{ video.video_id }}&l={{ video.videolength }}", "player", "425", "350", 7, "#FFFFFF");
-                        fo.write("flashcontent");
-
-                        // ]]>
+                        swfobject.embedSWF("player.swf?video_id={{ video.video_id }}&l={{ video.videolength }}", "flashcontent", "425", "350", 7, "#FFFFFF");
                     </script>
                 {% endif %}
                 <table width="425" cellpadding="0" cellspacing="0" border="0" align="center">
