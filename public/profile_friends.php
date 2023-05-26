@@ -5,7 +5,7 @@ namespace rePok {
 
     $page = "profile_friends";
     $pageNumber = (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? $_GET['page'] : 1);
-    $limit = sprintf("LIMIT %s,%s", (($pageNumber - 1) * $lpp), $lpp);
+    $limit = sprintf("%s,%s", (($pageNumber - 1) * 5), 5);
 
     if (isset($_GET['id'])) {
         $userpagedata = $sql->fetch("SELECT * FROM users WHERE id = ?", [$_GET['id']]);
