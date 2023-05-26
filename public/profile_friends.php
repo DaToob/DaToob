@@ -37,7 +37,7 @@ namespace rePok {
         'senderFriends' => $senderFriends,
         'receiverFriends' => $receiverFriends,
         'pageNumber' => $pageNumber,
-        'level_count' => Users::getUserVideoCount($userpagedata['id']),
+        'level_count' => Users::getUserFriendCount($userpagedata['id']),
         'page_name' => $page
     ]);
 }
