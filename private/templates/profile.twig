@@ -53,7 +53,7 @@
 			    <div style="font-size: 14px; font-weight: bold; color:#003366; margin-bottom: 5px;">You are friends with {{ userpagedata.name }}.</div><br><br>
 			{% else %}
                             <div style="font-size: 14px; font-weight: bold; color:#003366; margin-bottom: 5px;">Do you know {{ userpagedata.name }}?</div>
-					<a href="my_friends_invite_user.php?friend_id={{ userpagedata.id }}" target="invisible" onclick="return FriendsHandler();">Click here</a> to add {{ userpagedata.name }} as friend.<br><br>
+					<a href="{% if userpagedata.id != userdata.id %}my_friends_invite_user.php?friend_id={{ userpagedata.id }}" target="invisible" onclick="return FriendsHandler();{% else %}javascript:void(0)" onclick="alert('You cannot be friends with yourself!'){% endif %}">Click here</a> to add {{ userpagedata.name }} as friend.<br><br>
 			{% endif %}
 
                             <div style="font-size: 14px; font-weight: bold; color:#003366; margin-bottom: 5px;">
