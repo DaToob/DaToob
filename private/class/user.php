@@ -60,6 +60,18 @@ namespace rePok {
             $count = $sql->result("SELECT COUNT(user_id) FROM favorites WHERE user_id=?", [$userID]);
             return $count;
         }
+        
+        /**
+         * Get the amount of friends a user has. Probably index this shit in the future.
+         *
+         * @return int
+         */
+        static function getUserFriendCount($userID): int
+        {
+            global $sql;
+            $count = $sql->result("SELECT COUNT(*) FROM friends WHERE (sender=? OR receiver=?) AND status=1", [$userID, $userID]);
+            return $count;
+        }
 
         /**
          * Convert type of relationship to integer.
