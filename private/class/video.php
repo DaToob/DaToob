@@ -214,7 +214,7 @@ namespace rePok {
             $videoData = $sql->fetch("
         SELECT $userfields v.*,
             (SELECT COUNT(video_id) FROM views WHERE video_id = v.video_id) AS views,
-            (SELECT COUNT(id) FROM comments WHERE video_id = v.video_id) AS comments
+            (SELECT COUNT(id) FROM comments WHERE id = v.video_id) AS comments
         FROM videos v
         JOIN users u ON v.author = u.id
         WHERE v.video_id = ?", [$id]);
