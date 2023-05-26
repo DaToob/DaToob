@@ -27,9 +27,9 @@
                         <td align="center" style="padding: 5px;">
 
 
-                        {% if friendState == "pending" %}
+                        {% if friendState == "1" %}
 			    <div style="font-size: 14px; font-weight: bold; color:#003366; margin-bottom: 5px;">Friend invite awaiting response from {{ userpagedata.name }}...</div><br><br>
-			{% elseif friendState == "friends" %}
+			{% elseif friendState == "2" %}
 			    <div style="font-size: 14px; font-weight: bold; color:#003366; margin-bottom: 5px;">You are friends with {{ userpagedata.name }}.</div><br><br>
 			{% else %}
                             <div style="font-size: 14px; font-weight: bold; color:#003366; margin-bottom: 5px;">Do you know {{ userpagedata.name }}?</div>
