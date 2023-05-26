@@ -40,6 +40,7 @@ namespace rePok {
         'latestVideo' => Videos::getLatestVideo($userpagedata['id']),
         'allVideos' => Users::getUserVideoCount($userpagedata['id']),
         'allFavorites' => Users::getUserFavoriteCount($userpagedata['id']),
+        'allFriends' => Users::getUserFriendCount($userpagedata['id']),
         'userpagedata' => $userpagedata,
         'forceuser' => $forceuser,
         'edited' => isset($_GET['edited']), // TODO: merge these three things into one variable
