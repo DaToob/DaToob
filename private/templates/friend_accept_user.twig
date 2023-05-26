@@ -58,7 +58,8 @@
                                                 href="profile.php?user={{ friendrequest.u_name }}">{{ friendrequest.u_name }}</a>
                                     </div>
                                     <form method="post"
-                                          action="friend_accept_user.php?friend_id={{ friendrequest.u_id }}">
+                                          action="friend_accept_user.php">
+					<input type="hidden" id="friend_id" name="friend_id" value="{{ friendrequest.u_id }}">
                                         <input type="submit" value="Accept">
                                     </form>
                                 </td>
