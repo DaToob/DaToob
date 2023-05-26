@@ -31,6 +31,8 @@ namespace rePok {
         $friendState = 1;
         } elseif ($sql->result("SELECT * FROM friends WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?) AND status = 1", [$userdata['id'], $userpagedata['id'], $userpagedata['id'], $userdata['id']])) {
         $friendState = 2;
+        } else {
+        $friendState = 0;
         }
     } else {
         $friendState = 0;
