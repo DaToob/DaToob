@@ -25,6 +25,14 @@ namespace rePok {
     } else {
         $age = false;
     }
+    
+    if ($sql->result("SELECT * FROM friends WHERE (sender = ? AND receiver = ?) AND status = 0", [$userdata['id'], $userpagedata['id']])) {
+        $friendState = pending;
+    } elseif ($sql->result("SELECT * FROM friends WHERE (sender = ? AND receiver = ?) AND status = 1", [$userdata['id'], $userpagedata['id']])) {
+        $friendState = friends;
+    } else {
+        $friendState = none;
+    }
 
 // Personal user page stuff
     if ($userpagedata['about']) {
@@ -41,6 +49,7 @@ namespace rePok {
         'allVideos' => Users::getUserVideoCount($userpagedata['id']),
         'allFavorites' => Users::getUserFavoriteCount($userpagedata['id']),
         'allFriends' => Users::getUserFriendCount($userpagedata['id']),
+        'friendState' => $friendState,
         'userpagedata' => $userpagedata,
         'forceuser' => $forceuser,
         'edited' => isset($_GET['edited']), // TODO: merge these three things into one variable
