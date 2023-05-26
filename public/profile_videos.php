@@ -22,6 +22,7 @@ namespace rePok {
         'name' => $userpagedata['name'],
         'allVideos' => Users::getUserVideoCount($userpagedata['id']),
         'allFavorites' => Users::getUserFavoriteCount($userpagedata['id']),
+        'allFriends' => Users::getUserFriendCount($userpagedata['id']),
         'userpagedata' => $userpagedata,
         'videos' => $videos,
         'pageNumber' => $pageNumber,
