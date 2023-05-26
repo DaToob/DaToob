@@ -1,5 +1,25 @@
 {% extends "_layout.twig" %}
 {% block title %}{{ name }}{% endblock %}
+{% block script %}
+    <script>
+        function CheckLogin() {
+            {% if log %}
+            return true;
+            {% else %}
+            alert("You must be logged in to to perform this action!");
+            return false;
+            {% endif %}
+        }
+
+        function FriendsHandler() {
+            if (CheckLogin() == false)
+                return false;
+
+            alert("Friend invite sent!");
+            return true;
+        }
+    </script>
+{% endblock %}
 {% block content %}
     {% if markread %}
         <div class="success">Marked all notifications as read.</div>
@@ -33,7 +53,7 @@
 			    <div style="font-size: 14px; font-weight: bold; color:#003366; margin-bottom: 5px;">You are friends with {{ userpagedata.name }}.</div><br><br>
 			{% else %}
                             <div style="font-size: 14px; font-weight: bold; color:#003366; margin-bottom: 5px;">Do you know {{ userpagedata.name }}?</div>
-					<a href="my_friends_invite_user.php?friend_id={{ userpagedata.id }}">Click here</a> to add {{ userpagedata.name }} as friend.<br><br>
+					<a href="my_friends_invite_user.php?friend_id={{ userpagedata.id }}" target="invisible" onclick="return FriendsHandler();">Click here</a> to add {{ userpagedata.name }} as friend.<br><br>
 			{% endif %}
 
                             <div style="font-size: 14px; font-weight: bold; color:#003366; margin-bottom: 5px;">
