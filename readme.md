@@ -4,7 +4,7 @@ This is a fork of the [original rePok project](https://github.com/chazizgrkb/rep
 ## Credits
 
 * ljcool2006: Creator of DaToob
-* PF94: Creator of rePok
+* Chaziz: Creator of rePok
 * Billygoat891 (ugh): Video player
 * Icantellyou: Video uploader
 * ROllerozxa: A lot of the internals come from his project principia-web.
