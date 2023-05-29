@@ -17,6 +17,10 @@ namespace rePok {
         $logindata = $sql->fetch("SELECT id,password,token FROM users WHERE name = ?", [$name]);
 
         if (!$name || !$pass || !$logindata || !password_verify($pass, $logindata['password'])) $error .= 'Invalid credentials.';
+        
+        $loginbandata = $sql->fetch("SELECT * FROM bans WHERE user = ?", [$logindata['id']]);
+        
+        if ($loginbandata) $error .= 'That user has been banned!';
 
         if ($error == '') {
             $_SESSION['token'] = $logindata['token'];
