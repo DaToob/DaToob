@@ -29,6 +29,8 @@
         <div class="success">Successfully banned this user.</div>
     {% elseif justbanned == "unban" %}
         <div class="success">Successfully unbanned this user.</div>
+    {% elseif banState == "1" %}
+        <div class="error">This user has been banned!</div>
     {% endif %}
     <table width="100%" align="center" cellpadding="0" cellspacing="0" border="0">
         <tbody>
