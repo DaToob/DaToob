@@ -53,11 +53,16 @@ namespace rePok {
     if ($log) {
         $userdata = $sql->fetch("SELECT $accountfields FROM users WHERE id = ?", [$id]);
         $messages = $sql->result("SELECT COUNT(*) FROM messages m WHERE isread = 0 AND reciever = ?", [$userdata['id']]);
-        //$userbandata = $sql->fetch("SELECT * FROM bans WHERE userid = ?", [$id]);
+        $userbandata = $sql->fetch("SELECT * FROM bans WHERE user = ?", [$id]);
     } else {
         $userdata['powerlevel'] = 1;
     }
 
+    if ($log && $userbandata) {
+        header("Location: /public/banned.php?user=" . $userbandata['user']);
+        session_destroy();
+    }
+        
     /* any browsers with mozilla 4 user agent are definitely likely going to need the
     / flash player. we don't have a proper way of detecting old browsers so just do this. -grkb 2/3/2023 */
     if (str_contains($_SERVER['HTTP_USER_AGENT'], 'Mozilla/4')) {
