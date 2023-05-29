@@ -38,6 +38,12 @@ namespace rePok {
         $friendState = 0;
     }
 
+    if ($sql->result("SELECT * FROM bans WHERE user = ?", [$userpagedata['id']])) {
+        $banState = 1;
+    } else {
+        $banState = 0;
+    }
+    
 // Personal user page stuff
     if ($userpagedata['about']) {
         $markdown = new Parsedown();
@@ -54,6 +60,7 @@ namespace rePok {
         'allFavorites' => Users::getUserFavoriteCount($userpagedata['id']),
         'allFriends' => Users::getUserFriendCount($userpagedata['id']),
         'friendState' => $friendState,
+        'banState' => $banState,
         'userpagedata' => $userpagedata,
         'forceuser' => $forceuser,
         'edited' => isset($_GET['edited']), // TODO: merge these three things into one variable
