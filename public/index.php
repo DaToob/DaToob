@@ -11,7 +11,7 @@ namespace rePok {
     $twig = twigloader();
 
     echo $twig->render('index.twig', [
-        'videos' => Videos::getVideos("RAND()", 5),
+        'videos' => Videos::getVideos("RAND()", 5, "fromBannedUser", 0),
         'tags' => VideoTags::getListOfTags("latestUse DESC", 50),
     ]);
 }
