@@ -8,6 +8,7 @@ namespace rePok {
         public static $recommendedfields = "
 		jaccard.video_id,
 		jaccard.flags,
+		jaccard.fromBannedUser,
 		jaccard.intersect,
 		jaccard.union,
 		jaccard.intersect / jaccard.union AS 'jaccard index'
@@ -16,6 +17,7 @@ namespace rePok {
 		SELECT
 			c2.video_id AS video_id,
 			c2.flags AS flags,
+			c2.fromBannedUser AS fromBannedUser,
 			COUNT(ct2.tag_id) AS 'intersect',
 			(
 			SELECT
@@ -43,7 +45,7 @@ namespace rePok {
 		c2.id
 	) AS jaccard
 	WHERE
-		jaccard.flags != 0x2
+		jaccard.flags != 0x2 AND jaccard.fromBannedUser != 1
 	ORDER BY
 		jaccard.intersect / jaccard.union
 	DESC";
@@ -54,7 +56,7 @@ namespace rePok {
             (SELECT COUNT(*) FROM views WHERE video_id = v.video_id) AS views, 
             (SELECT COUNT(*) FROM comments WHERE id = v.video_id) AS comments, 
             (SELECT COUNT(*) FROM favorites WHERE video_id = v.video_id) AS favorites,
-            v.flags, v.originalfile, v.videolength, v.category_id, v.author';
+            v.flags, v.fromBannedUser, v.originalfile, v.videolength, v.category_id, v.author';
         }
 
         /**
