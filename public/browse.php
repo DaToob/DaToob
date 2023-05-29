@@ -8,23 +8,23 @@ namespace rePok {
     $limit = sprintf("%s,%s", (($pageNumber - 1) * $lpp), $lpp);
 
     if ($section == "mp") {
-        $videoData = Videos::getVideos("views DESC", $limit);
+        $videoData = Videos::getVideos("views DESC", $limit, "fromBannedUser", 0);
         $page = "browsePopular";
     } elseif ($section == "md") {
-        $videoData = Videos::getVideos("comments DESC", $limit);
+        $videoData = Videos::getVideos("comments DESC", $limit, "fromBannedUser", 0);
         $page = "browseDiscussed";
     } elseif ($section == "mf") {
-        $videoData = Videos::getVideos("favorites DESC", $limit);
+        $videoData = Videos::getVideos("favorites DESC", $limit, "fromBannedUser", 0);
         $page = "browseFavorited";
     } elseif ($section == "r") {
-        $videoData = Videos::getVideos("RAND()", $limit);
+        $videoData = Videos::getVideos("RAND()", $limit, "fromBannedUser", 0);
         $page = "browseRandom";
     } else {
-        $videoData = Videos::getVideos("v.time DESC", $limit);
+        $videoData = Videos::getVideos("v.time DESC", $limit, "fromBannedUser", 0);
         $page = "browseMain";
     }
 
-    $count = $sql->result("SELECT COUNT(*) FROM videos v");
+    $count = $sql->result("SELECT COUNT(*) FROM videos v WHERE fromBannedUser != 1");
 
     $twig = twigloader();
 
