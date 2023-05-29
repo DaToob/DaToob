@@ -225,6 +225,10 @@ namespace rePok {
                 error('404', "The video you were looking for cannot be found.");
             }
 
+            if ($videoData['fromBannedUser'] == 1) {
+                error('404', "The account associated with this video has been banned.");
+            }
+
             return $videoData;
         }
 
