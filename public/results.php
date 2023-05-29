@@ -19,13 +19,13 @@ SELECT DISTINCT $userfields $videofields FROM videos v
 	JOIN tag_index ti ON (ti.video_id = v.id) 
 	JOIN tag_meta t ON (t.tag_id = ti.tag_id) 	
 	WHERE 
-		v.title LIKE CONCAT('%', ?, '%') 
+		(v.title LIKE CONCAT('%', ?, '%') 
 	OR 
 		v.description LIKE CONCAT('%', ?, '%') 
 	OR
-		t.name LIKE CONCAT('%', ?, '%') 
+		t.name LIKE CONCAT('%', ?, '%')) 
 	AND 
-		flags != 0x2
+		(flags != 0x2 AND fromBannedUser != 1)
 ORDER BY v.id DESC $limit", [$searchQuery, $searchQuery, $searchQuery]);
     $videos = $sql->fetchArray($videoData);
 
@@ -38,13 +38,13 @@ SELECT COUNT(DISTINCT v.id) FROM videos v
  	JOIN tag_index ti ON (ti.video_id = v.id) 
 	JOIN tag_meta t ON (t.tag_id = ti.tag_id)
 	WHERE 
-		v.title LIKE CONCAT('%', ?, '%') 
+		(v.title LIKE CONCAT('%', ?, '%') 
 	OR v.description 
 		LIKE CONCAT('%', ?, '%') 
 	OR
-		t.name LIKE CONCAT('%', ?, '%') 
+		t.name LIKE CONCAT('%', ?, '%')) 
 	AND 
-		flags != 0x2", [$searchQuery, $searchQuery, $searchQuery]);
+		(flags != 0x2 AND fromBannedUser != 1)", [$searchQuery, $searchQuery, $searchQuery]);
     $query_end = microtime(true);
 
     $duration = substr($query_end - $query_start, 0, 4);
