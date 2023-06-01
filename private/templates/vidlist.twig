@@ -49,7 +49,10 @@
                                         {% if page == "myVideos" %}
                                         <tr>
                                             <td align="center">
-                                                <button>Edit Video</button>
+                                                <form method="GET" action="my_videos_edit.php">
+                                                <input type="hidden" name="v" value="{{ video.video_id }}">
+                                                <input class="button" type="submit" value="Edit Video">
+                                                </form>
                                             </td>
                                         </tr>
                                         <tr>
