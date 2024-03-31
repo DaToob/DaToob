@@ -14,6 +14,16 @@ namespace rePok {
 // fixme: move this into a function probably?
 
     if (isset($_FILES['fileToUpload'])) {
+        $cooldown = $sql->prepare(
+			"SELECT * FROM videos
+			WHERE author = ? AND videos.time > CURRENT_TIMESTAMP() - 600
+			ORDER BY id DESC"
+		);
+        $cooldown->execute([$userdata['id']]);
+        if($cooldown->rowCount() > 5 || $cooldown->rowCount() == 5) {
+            echo "nice try bozo";
+            die();
+        }
         $new = randstr(11);
 
         $vextension = strtolower(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION));
