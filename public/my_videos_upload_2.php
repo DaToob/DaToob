@@ -14,13 +14,10 @@ namespace rePok {
 // fixme: move this into a function probably?
 
     if (isset($_FILES['fileToUpload'])) {
-        $cooldown = $sql->prepare(
-			"SELECT * FROM videos
-			WHERE author = ? AND videos.time > CURRENT_TIMESTAMP() - 600
-			ORDER BY id DESC"
-		);
-        $cooldown->execute([$userdata['id']]);
-        if($cooldown->rowCount() > 5 || $cooldown->rowCount() == 5) {
+        $cooldown = $sql->result(
+			"SELECT COUNT(id) FROM videos
+			WHERE author = ? AND videos.time > CURRENT_TIMESTAMP() - 600", [$userdata['id']]);
+        if($cooldown > 5 || $cooldown == 5) {
             echo "nice try bozo";
             die();
         }
