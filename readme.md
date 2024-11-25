@@ -6,5 +6,5 @@ This is a fork of the [original rePok project](https://github.com/chazizgrkb/rep
 * ljcool2006: Creator of DaToob
 * Chaziz (ugh): Creator of rePok
 * Billygoat891: Video player
-* Icantellyou: Video uploader
+* Icanttellyou: Video uploader
 * ROllerozxa: A lot of the internals come from his project principia-web.
